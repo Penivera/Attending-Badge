@@ -43,6 +43,7 @@ function App() {
       <header className="app-header">
         <div className="header-content">
           <h1>Solana Nigerian Developer Cohort</h1>
+          <p className="tagline">Building The Next Generation Of Solana Developers In Nigeria</p>
           <p className="subtitle">Create Your Personalized Registration Badge</p>
         </div>
       </header>

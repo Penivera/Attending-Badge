@@ -6,25 +6,54 @@
 }
 
 .app-header {
-  background: linear-gradient(135deg, var(--purple-primary) 0%, var(--purple-light) 100%);
-  color: var(--white);
+  background: var(--white);
+  color: var(--black-text);
   padding: 40px 30px;
   text-align: center;
   border-radius: 24px 24px 0 0;
-  box-shadow: 0 4px 20px rgba(139, 47, 201, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.app-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle, var(--gray-300) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.3;
+  pointer-events: none;
 }
 
 .header-content h1 {
   font-size: 2.5rem;
-  font-weight: 800;
+  font-weight: 900;
   margin-bottom: 10px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: var(--black-text);
+  position: relative;
+  z-index: 1;
+  letter-spacing: -0.5px;
+}
+
+.tagline {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--gray-700);
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
 }
 
 .subtitle {
   font-size: 1.1rem;
-  font-weight: 400;
-  opacity: 0.95;
+  font-weight: 500;
+  color: var(--gray-700);
+  position: relative;
+  z-index: 1;
 }
 
 .app-main {
