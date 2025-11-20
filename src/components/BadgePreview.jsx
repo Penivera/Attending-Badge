@@ -4,7 +4,8 @@ import BadgeTemplate from './BadgeTemplate';
 import './BadgePreview.css';
 
 const BadgePreview = forwardRef(({ badgeData, isGenerating }, ref) => {
-  const badgeRef = useRef(null);
+  const badgeRef = useRef(null); // scaled preview badge
+  const exportBadgeRef = useRef(null); // unscaled off-screen clone for accurate export
   const scaleWrapperRef = useRef(null);
   const [canDownload, setCanDownload] = React.useState(false);
   const [scale, setScale] = useState(0.5);
@@ -33,14 +34,20 @@ const BadgePreview = forwardRef(({ badgeData, isGenerating }, ref) => {
   }, [badgeData]);
 
   const handleDownload = async () => {
-    if (!badgeRef.current) return;
+    // Ensure we have the off-screen clone ready
+    if (!exportBadgeRef.current) return;
+    // Wait for web fonts to be ready to prevent layout shifts
+    if (document.fonts && document.fonts.ready) {
+      try { await document.fonts.ready; } catch (_) { /* ignore */ }
+    }
 
     try {
-      const canvas = await html2canvas(badgeRef.current, {
+      const canvas = await html2canvas(exportBadgeRef.current, {
         scale: 2,
         useCORS: true,
         backgroundColor: null,
-        logging: false
+        logging: false,
+        removeContainer: true
       });
 
       canvas.toBlob((blob) => {
@@ -79,26 +86,49 @@ const BadgePreview = forwardRef(({ badgeData, isGenerating }, ref) => {
           style={{ transform: `scale(${scale})` }}
         >
           <div ref={badgeRef} className="badge-render">
-          {badgeData ? (
+            {badgeData ? (
+              <BadgeTemplate
+                userName={badgeData.name}
+                photoUrl={badgeData.image}
+                facePosition={badgeData.facePosition}
+              />
+            ) : (
+              <div className="preview-placeholder">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                  <polyline points="21 15 16 10 5 21"></polyline>
+                </svg>
+                <p>Your badge will appear here</p>
+                <small>Enter your name and upload a photo to get started</small>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Off-screen unscaled clone for pixel-perfect export */}
+      {badgeData && (
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            top: '-10000px',
+            left: '-10000px',
+            width: '800px',
+            height: '1000px',
+            overflow: 'hidden'
+          }}
+        >
+          <div ref={exportBadgeRef} style={{ width: '800px', height: '1000px' }}>
             <BadgeTemplate
               userName={badgeData.name}
               photoUrl={badgeData.image}
               facePosition={badgeData.facePosition}
             />
-          ) : (
-            <div className="preview-placeholder">
-              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                <polyline points="21 15 16 10 5 21"></polyline>
-              </svg>
-              <p>Your badge will appear here</p>
-              <small>Enter your name and upload a photo to get started</small>
-            </div>
-          )}
           </div>
         </div>
-      </div>
+      )}
 
       {canDownload && !isGenerating && (
         <button className="btn-download" onClick={handleDownload}>

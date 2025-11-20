@@ -1,7 +1,40 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import './BadgeTemplate.css';
 
 const BadgeTemplate = ({ userName, photoUrl, facePosition }) => {
+  const nameRef = useRef(null);
+
+  // Dynamically shrink name text to fit the name plate.
+  useEffect(() => {
+    const el = nameRef.current;
+    if (!el) return;
+    const plate = el.parentElement;
+    if (!plate) return;
+
+    // Reset styles before measurement
+    el.style.fontSize = '34px';
+    el.style.whiteSpace = 'nowrap';
+    el.style.display = 'block';
+
+    const style = window.getComputedStyle(plate);
+    const padLeft = parseFloat(style.paddingLeft) || 0;
+    const padRight = parseFloat(style.paddingRight) || 0;
+    const availableWidth = plate.clientWidth - padLeft - padRight;
+    let currentSize = 34;
+    const minSize = 20;
+
+    // Shrink font size until it fits or reaches minimum.
+    while (el.scrollWidth > availableWidth && currentSize > minSize) {
+      currentSize -= 1;
+      el.style.fontSize = currentSize + 'px';
+    }
+
+    // If still overflowing at minimum size, allow wrapping (CSS line clamp will handle truncation to 2 lines)
+    if (el.scrollWidth > availableWidth) {
+      el.style.whiteSpace = 'normal';
+    }
+  }, [userName]);
+
   return (
     <div className="badge-template">
       {/* Header Section with Logos */}
@@ -91,7 +124,7 @@ const BadgeTemplate = ({ userName, photoUrl, facePosition }) => {
 
         {/* Name Plate */}
         <div className="name-plate">
-          <div className="name-text">
+          <div ref={nameRef} className="name-text">
             {userName || 'Your Name'}
           </div>
         </div>
