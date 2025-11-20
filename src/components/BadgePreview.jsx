@@ -1,11 +1,30 @@
-import React, { forwardRef, useEffect, useRef } from 'react';
+import React, { forwardRef, useEffect, useRef, useState } from 'react';
 import html2canvas from 'html2canvas';
 import BadgeTemplate from './BadgeTemplate';
 import './BadgePreview.css';
 
 const BadgePreview = forwardRef(({ badgeData, isGenerating }, ref) => {
   const badgeRef = useRef(null);
+  const scaleWrapperRef = useRef(null);
   const [canDownload, setCanDownload] = React.useState(false);
+  const [scale, setScale] = useState(0.5);
+
+  // Dynamic scaling based on available width
+  useEffect(() => {
+    const computeScale = () => {
+      if (!scaleWrapperRef.current) return;
+      const containerWidth = scaleWrapperRef.current.parentElement.clientWidth;
+      // target width 800; leave some padding (16px)
+      const available = containerWidth - 16;
+      const raw = available / 800;
+      // clamp between 0.18 and 0.5
+      const clamped = Math.min(0.5, Math.max(0.18, raw));
+      setScale(clamped);
+    };
+    computeScale();
+    window.addEventListener('resize', computeScale);
+    return () => window.removeEventListener('resize', computeScale);
+  }, []);
 
   useEffect(() => {
     if (badgeData) {
@@ -47,15 +66,19 @@ const BadgePreview = forwardRef(({ badgeData, isGenerating }, ref) => {
 
   return (
     <div className="badge-preview-container">
-      <div className="preview-canvas">
+      <div className="preview-canvas" style={{ minHeight: `${1000 * scale + 40}px` }}>
         {isGenerating && (
           <div className="loading-overlay">
             <div className="spinner"></div>
             <p>Generating your badge...</p>
           </div>
         )}
-        
-        <div ref={badgeRef} className="badge-render">
+        <div
+          ref={scaleWrapperRef}
+          className="badge-scale-wrapper"
+          style={{ transform: `scale(${scale})` }}
+        >
+          <div ref={badgeRef} className="badge-render">
           {badgeData ? (
             <BadgeTemplate
               userName={badgeData.name}
@@ -73,6 +96,7 @@ const BadgePreview = forwardRef(({ badgeData, isGenerating }, ref) => {
               <small>Enter your name and upload a photo to get started</small>
             </div>
           )}
+          </div>
         </div>
       </div>
 

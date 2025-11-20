@@ -58,3 +58,24 @@
   align-items: center;
   gap: 8px;
 }
+
+@media (max-width: 640px) {
+  .input-group label {
+    font-size: 0.9rem;
+  }
+
+  .input-group input[type="text"] {
+    padding: 12px 16px;
+    font-size: 0.95rem;
+  }
+
+  .helper-text,
+  .character-count {
+    font-size: 0.75rem;
+  }
+
+  .warning-message {
+    font-size: 0.75rem;
+    padding: 6px 10px;
+  }
+}

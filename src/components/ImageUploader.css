@@ -83,3 +83,31 @@
 .remove-photo:hover {
   transform: scale(1.1);
 }
+
+@media (max-width: 640px) {
+  .upload-area {
+    padding: 30px 15px;
+    min-height: 180px;
+  }
+
+  .upload-placeholder p {
+    font-size: 0.9rem;
+  }
+
+  .upload-placeholder small {
+    font-size: 0.75rem;
+  }
+
+  .upload-preview img {
+    max-height: 250px;
+  }
+
+  .helper-text {
+    font-size: 0.75rem;
+  }
+
+  .warning-message {
+    font-size: 0.75rem;
+    padding: 6px 10px;
+  }
+}

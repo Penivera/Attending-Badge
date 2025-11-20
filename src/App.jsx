@@ -58,8 +58,8 @@ function App() {
           <h1>Solana Nigeria<br/>Developer Cohort</h1>
           <p className="tagline">Building The Next Generation Of Solana Developers In Nigeria</p>
           <div className="event-badge">
-            <span className="event-dates">November 22 - November 28, 2025</span>
-            <span className="event-time">||08:00AM</span>
+            <span className="event-dates">November 27 - November 29, 2025</span>
+            <span className="event-time">9:00AM</span>
           </div>
           <p className="subtitle">Create Your Personalized Registration Badge</p>
         </div>
