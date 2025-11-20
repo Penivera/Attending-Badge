@@ -41,9 +41,26 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
+        <div className="header-logos">
+          <div className="logos-left">
+            <span className="logo-text">KronosGuild</span>
+            <span className="logo-divider">×</span>
+            <span className="logo-text">SSA</span>
+          </div>
+          <div className="logos-right">
+            <div className="solana-logo">
+              <span className="solana-main">SOLANA</span>
+              <span className="solana-sub">FOUNDATION</span>
+            </div>
+          </div>
+        </div>
         <div className="header-content">
-          <h1>Solana Nigerian Developer Cohort</h1>
+          <h1>Solana Nigeria<br/>Developer Cohort</h1>
           <p className="tagline">Building The Next Generation Of Solana Developers In Nigeria</p>
+          <div className="event-badge">
+            <span className="event-dates">November 22 - November 28, 2025</span>
+            <span className="event-time">||08:00AM</span>
+          </div>
           <p className="subtitle">Create Your Personalized Registration Badge</p>
         </div>
       </header>
@@ -84,7 +101,10 @@ function App() {
       </main>
 
       <footer className="app-footer">
-        <p>Powered by Solana Foundation × SuperTeam × KronosBlu × SSA</p>
+        <div className="footer-content">
+          <img src="/superteam.jpg" alt="SuperTeam" className="footer-logo" />
+          <p>Powered by Solana Foundation × SuperTeam × KronosGuild × SSA</p>
+        </div>
       </footer>
     </div>
   );

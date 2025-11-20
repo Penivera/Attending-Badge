@@ -7,17 +7,29 @@ const BadgeTemplate = ({ userName, photoUrl, facePosition }) => {
       {/* Header Section with Logos */}
       <div className="badge-header">
         <div className="header-logos-left">
-          <div className="logo-kronos">KronosBLU</div>
+          <div className="logo-kronos">KronosGuild</div>
           <div className="logo-divider">×</div>
           <div className="logo-ssa">SSA</div>
         </div>
         <div className="header-logos-right">
           <div className="logo-solana">
-            <span className="solana-text">SOLANA</span>
-            <span className="foundation-text">FOUNDATION</span>
-          </div>
-          <div className="logo-superteam">
-            <img src="/superteam.jpg" alt="SuperTeam" className="superteam-logo" />
+            <div className="solana-brand">
+              <svg className="solana-icon" viewBox="0 0 397.7 311.7" fill="currentColor">
+                <defs>
+                  <linearGradient id="solanaGradient" x1="360.88" y1="351.46" x2="141.21" y2="-69.13" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stopColor="#00FFA3"/>
+                    <stop offset="1" stopColor="#DC1FFF"/>
+                  </linearGradient>
+                </defs>
+                <path fill="url(#solanaGradient)" d="M64.6,237.9c2.4-2.4,5.7-3.8,9.2-3.8h317.4c5.8,0,8.7,7,4.6,11.1l-62.7,62.7c-2.4,2.4-5.7,3.8-9.2,3.8H6.5c-5.8,0-8.7-7-4.6-11.1L64.6,237.9z"/>
+                <path fill="url(#solanaGradient)" d="M64.6,3.8C67.1,1.4,70.4,0,73.8,0h317.4c5.8,0,8.7,7,4.6,11.1l-62.7,62.7c-2.4,2.4-5.7,3.8-9.2,3.8H6.5c-5.8,0-8.7-7-4.6-11.1L64.6,3.8z"/>
+                <path fill="url(#solanaGradient)" d="M333.1,120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8,0-8.7,7-4.6,11.1l62.7,62.7c2.4,2.4,5.7,3.8,9.2,3.8h317.4c5.8,0,8.7-7,4.6-11.1L333.1,120.1z"/>
+              </svg>
+              <div className="solana-text-group">
+                <span className="solana-text">SOLANA</span>
+                <span className="foundation-text">FOUNDATION</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -86,7 +98,7 @@ const BadgeTemplate = ({ userName, photoUrl, facePosition }) => {
 
         {/* Main Text */}
         <div className="cohort-text">
-          <div className="attending-text">I will be attending the</div>
+          <div className="attending-text"><b>I will be attending the</b></div>
           <div className="cohort-title">SOLANA NIGERIAN DEVELOPER COHORT</div>
         </div>
       </div>
@@ -99,7 +111,11 @@ const BadgeTemplate = ({ userName, photoUrl, facePosition }) => {
           <div className="registration-text">FOR FREE REGISTRATION, USE THE</div>
           <div className="link-text">LINK BELOW</div>
         </div>
-        <div className="registration-link">hptts://luma.com/kb0rt3y9?tk=NUlPpi</div>
+        <div className="registration-link">https://luma.com/kb0rt3y9</div>
+        <div className="partner-logo">
+          <img src="/superteam.jpg" alt="SuperTeam Partner" className="superteam-badge" />
+          <div className="powered-by">Powered by SuperTeam</div>
+        </div>
       </div>
     </div>
   );

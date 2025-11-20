@@ -22,8 +22,8 @@
 }
 
 .input-group input[type="text"]:focus {
-  border-color: var(--purple-primary);
-  box-shadow: 0 0 0 4px rgba(139, 47, 201, 0.1);
+  border-color: #000;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
 }
 
 .input-footer {

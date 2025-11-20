@@ -14,13 +14,13 @@
 }
 
 .upload-area:hover {
-  border-color: var(--purple-primary);
-  background: rgba(139, 47, 201, 0.05);
+  border-color: #FF6B35;
+  background: rgba(255, 107, 53, 0.05);
 }
 
 .upload-area.drag-over {
-  border-color: var(--purple-primary);
-  background: rgba(139, 47, 201, 0.1);
+  border-color: #FF6B35;
+  background: rgba(255, 107, 53, 0.1);
   border-style: solid;
 }
 
@@ -32,7 +32,7 @@
 }
 
 .upload-placeholder svg {
-  color: var(--purple-primary);
+  color: #000;
 }
 
 .upload-placeholder p {
