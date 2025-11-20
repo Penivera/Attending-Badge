@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solana Nigerian Developer Cohort - Sign Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>Solana Nigerian Developer Cohort</h1>
+                <p class="subtitle">Create Your Personalized Registration Badge</p>
+            </div>
+        </header>
+
+        <main>
+            <div class="form-section">
+                <div class="input-group">
+                    <label for="nameInput">Your Full Name</label>
+                    <input type="text" id="nameInput" placeholder="Enter your name" maxlength="50" autocomplete="name">
+                    <small class="helper-text">This will appear on your registration badge</small>
+                </div>
+
+                <div class="input-group">
+                    <label for="photoUpload">Upload Your Photo</label>
+                    <div class="upload-area" id="uploadArea">
+                        <input type="file" id="photoUpload" accept="image/*" hidden>
+                        <div class="upload-placeholder">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                            <p>Click to upload or drag and drop</p>
+                            <small>PNG, JPG or JPEG (Max 5MB)</small>
+                        </div>
+                        <div class="upload-preview" id="uploadPreview" style="display: none;">
+                            <img id="previewImg" src="" alt="Preview">
+                            <button type="button" class="remove-photo" id="removePhoto">&times;</button>
+                        </div>
+                    </div>
+                    <small class="helper-text">For best results, use a clear headshot photo</small>
+                    <div id="uploadWarning" class="warning-text" style="display: none;"></div>
+                </div>
+
+                <button type="button" id="generateBtn" class="btn-primary" disabled>
+                    Generate My Badge
+                </button>
+            </div>
+
+            <div class="preview-section">
+                <h2>Preview</h2>
+                <div class="canvas-container">
+                    <canvas id="badgeCanvas"></canvas>
+                    <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+                        <div class="spinner"></div>
+                        <p>Generating your badge...</p>
+                    </div>
+                </div>
+                <button type="button" id="downloadBtn" class="btn-secondary" style="display: none;">
+                    Download Badge
+                </button>
+            </div>
+        </main>
+
+        <footer>
+            <p>Powered by Solana Foundation × SuperTeam × KronosBlu × SSA</p>
+        </footer>
+    </div>
+
+    <!-- Face Detection Library -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

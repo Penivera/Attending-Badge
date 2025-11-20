@@ -1,0 +1,60 @@
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-group label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--gray-700);
+}
+
+.input-group input[type="text"] {
+  padding: 14px 18px;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 2px solid var(--gray-200);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  outline: none;
+  background: white;
+}
+
+.input-group input[type="text"]:focus {
+  border-color: var(--purple-primary);
+  box-shadow: 0 0 0 4px rgba(139, 47, 201, 0.1);
+}
+
+.input-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.helper-text {
+  font-size: 0.85rem;
+  color: var(--gray-400);
+}
+
+.character-count {
+  font-size: 0.85rem;
+  color: var(--gray-400);
+  font-weight: 600;
+}
+
+.character-count.warning {
+  color: var(--warning);
+}
+
+.warning-message {
+  font-size: 0.85rem;
+  color: var(--warning);
+  padding: 8px 12px;
+  background: rgba(245, 158, 11, 0.1);
+  border-radius: 8px;
+  border-left: 3px solid var(--warning);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
